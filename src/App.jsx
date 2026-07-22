@@ -1,16 +1,20 @@
 import Navbar from "./components/layout/Navbar";
+import Hero from "./components/sections/Hero";
+import Services from "./components/sections/Services";
+import Process from "./components/sections/Process";
 
-function App() {
-  return (
-    <>
-      <Navbar />
-      <main>
-        <h1 className="text-4xl font-bold text-center mt-20">
-          Tcongs Home Redesign
-        </h1>
-      </main>
-    </>
-  );
+
+function App(){
+
+ return(
+  <>
+    <Navbar/>
+    <Hero/>
+    <Services/>
+    <Process/>
+  </>
+ )
+
 }
 
 export default App;
