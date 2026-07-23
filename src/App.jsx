@@ -14,64 +14,115 @@ import AnimatedBackground from "./components/common/AnimatedBackground";
 import ChatWidget from "./components/common/ChatWidget";
 import ContactModal from "./components/common/ContactModal";
 
+
 function App() {
+
   const [contactOpen, setContactOpen] = useState(false);
 
+
   useEffect(() => {
-    const alreadyShown = sessionStorage.getItem("contactPopupShown");
+
+    const alreadyShown = sessionStorage.getItem(
+      "contactPopupShown"
+    );
+
 
     if (!alreadyShown) {
+
       const timer = setTimeout(() => {
-  setContactOpen(true);
-  sessionStorage.setItem("contactPopupShown", "true");
-}, 3000);
+
+        setContactOpen(true);
+
+        sessionStorage.setItem(
+          "contactPopupShown",
+          "true"
+        );
+
+      }, 3000);
+
 
       return () => clearTimeout(timer);
+
     }
+
   }, []);
+
+
 
   const openContact = () => {
     setContactOpen(true);
   };
 
+
   const closeContact = () => {
     setContactOpen(false);
   };
 
+
+
   return (
+
     <>
+
+      {/* Background Animation */}
       <AnimatedBackground />
 
+
+      {/* Cursor Effect */}
       <CursorGlow />
 
-      <main className="relative z-10 min-h-screen">
-        <Navbar openContact={openContact} />
 
-        <Hero openContact={openContact} />
+      <main className="relative z-10 min-h-screen">
+
+        <Navbar 
+          openContact={openContact}
+        />
+
+
+        <Hero 
+          openContact={openContact}
+        />
+
 
         <Services />
 
+
         <Process />
 
-     <GrowthSection openContact={openContact} />
 
-        <FAQ 
-  openContact={() => setContactOpen(true)}
-/>
+        <GrowthSection
+          openContact={openContact}
+        />
 
-        <Contact openContact={openContact} />
+
+        <FAQ
+          openContact={openContact}
+        />
+
+
+        <Contact
+          openContact={openContact}
+        />
+
 
         <Footer />
 
+
         <ChatWidget />
+
       </main>
+
 
       <ContactModal
         open={contactOpen}
         close={closeContact}
       />
+
     </>
+
   );
+
 }
+
 
 export default App;

@@ -66,6 +66,52 @@ bg-black
 py-24
 "
 >
+  {/* Growth Background Glow */}
+
+<motion.div
+animate={{
+  x:[0,100,0],
+  y:[0,-60,0],
+}}
+transition={{
+  duration:14,
+  repeat:Infinity,
+  ease:"easeInOut"
+}}
+className="
+absolute
+left-[-100px]
+top-20
+h-[350px]
+w-[350px]
+rounded-full
+bg-cyan-500/10
+blur-[140px]
+"
+/>
+
+
+<motion.div
+animate={{
+  x:[0,-100,0],
+  y:[0,80,0],
+}}
+transition={{
+  duration:16,
+  repeat:Infinity,
+  ease:"easeInOut"
+}}
+className="
+absolute
+right-[-100px]
+bottom-10
+h-[400px]
+w-[400px]
+rounded-full
+bg-purple-500/10
+blur-[150px]
+"
+/>
 
 
 {/* Background Glow */}

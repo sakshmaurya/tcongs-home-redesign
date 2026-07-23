@@ -32,7 +32,7 @@ className="
 relative
 z-10
 overflow-x-hidden
-bg-black
+
 pt-28
 md:pt-36
 pb-24
