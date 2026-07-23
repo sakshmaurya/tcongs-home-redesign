@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "../../assets/logos/logo.svg";
 import ContactModal from "../common/ContactModal";
+import MagneticButton from "../common/MagneticButton";
 
 
 const Navbar = ({ openContact }) => {
@@ -402,27 +403,30 @@ Contact
 
 {/* BUTTON */}
 
-<button
-  onClick={openContact}
-  className="
-  hidden
-  md:block
-  rounded-full
-  bg-gradient-to-r
-  from-cyan-500
-  to-blue-600
-  px-6
-  py-3
-  text-white
-  font-semibold
-  shadow-lg
-  shadow-cyan-500/20
-  hover:scale-105
-  transition
+<div className="hidden md:block">
+
+<MagneticButton
+
+onClick={openContact}
+
+className="
+rounded-full
+bg-gradient-to-r
+from-cyan-500
+to-blue-600
+px-6
+py-3
+text-white
+font-semibold
+shadow-lg
 "
+
 >
-  Launch Your Idea 🚀
-</button>
+Launch Your Idea 🚀
+
+</MagneticButton>
+
+</div>
 
 
 

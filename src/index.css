@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* ---------- Base ---------- */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -7,6 +16,124 @@ html {
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: #ffffff;
-  color: #0f172a;
+
+  background: #050505;
+  color: #ffffff;
+
+  overflow-x: hidden;
+
+  transition:
+    background-color .3s ease,
+    color .3s ease;
+}
+
+#root{
+  min-height:100vh;
+}
+
+/* ---------- Selection ---------- */
+
+::selection{
+  background:#06b6d4;
+  color:#fff;
+}
+
+/* ---------- Scrollbar ---------- */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#111;
+}
+
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(to bottom,#06b6d4,#2563eb);
+  border-radius:20px;
+}
+
+/* ---------- Phone Input ---------- */
+
+.phone-box{
+  width:100%;
+}
+
+.react-international-phone-input-container{
+  width:100%;
+  display:flex;
+}
+
+.react-international-phone-country-selector-button{
+
+  width:62px !important;
+  height:58px !important;
+
+  background:rgba(255,255,255,.08)!important;
+
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-right:none!important;
+
+  border-radius:16px 0 0 16px!important;
+}
+
+.react-international-phone-input{
+
+  width:100%!important;
+  height:58px!important;
+
+  background:rgba(255,255,255,.08)!important;
+
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-left:none!important;
+
+  border-radius:0 16px 16px 0!important;
+
+  color:#fff!important;
+
+  font-size:16px!important;
+
+  padding-left:14px!important;
+
+  outline:none!important;
+
+}
+
+.react-international-phone-input::placeholder{
+  color:#9ca3af!important;
+}
+
+.react-international-phone-input:focus{
+  border-color:#22d3ee!important;
+}
+
+.react-international-phone-country-selector-dropdown{
+
+  background:#111!important;
+
+  border:1px solid rgba(255,255,255,.18)!important;
+
+  border-radius:16px!important;
+
+  color:#fff!important;
+
+}
+
+.react-international-phone-country-selector-dropdown-item{
+  color:#fff!important;
+}
+
+.react-international-phone-country-selector-dropdown-item:hover{
+  background:#222!important;
+}
+
+/* ---------- Autofill ---------- */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill{
+
+  -webkit-box-shadow:0 0 0 1000px #111 inset!important;
+
+  -webkit-text-fill-color:#fff!important;
+
 }

@@ -1,71 +1,173 @@
-import { X } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { X, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import logo from "../../assets/logos/logo.svg";
 
 
-const ContactModal = ({open, close}) => {
+const ContactModal = ({ open, close }) => {
 
 
-if(!open) return null;
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    project: ""
+  });
+
+
+  const [captcha, setCaptcha] = useState("");
+
+
+
+  const handleChange = (e) => {
+
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+
+  };
+
+
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+
+
+    if(captcha !== "16"){
+
+      alert("Please enter correct verification");
+
+      return;
+
+    }
+
+
+    alert("Thanks! We will contact you soon 🚀");
+
+    close();
+
+  };
+
 
 
 return (
 
-<div
+<AnimatePresence>
+
+{open && (
+
+<motion.div
+
+initial={{opacity:0}}
+
+animate={{opacity:1}}
+
+exit={{opacity:0}}
+
 className="
 fixed
 inset-0
-z-[100]
+z-[999]
+
 flex
 items-center
 justify-center
-bg-black/70
-backdrop-blur-sm
+
+bg-black/80
+
+backdrop-blur-xl
+
 px-4
 "
+
+
 >
 
 
 <motion.div
 
 initial={{
-opacity:0,
-scale:0.8,
-y:30
+scale:0.9,
+y:40
 }}
 
 animate={{
-opacity:1,
 scale:1,
 y:0
 }}
 
 exit={{
-opacity:0,
-scale:0.8
+scale:0.9,
+y:40
 }}
 
 transition={{
 duration:0.3
 }}
 
+
 className="
 relative
+
 w-full
-max-w-xl
-rounded-3xl
+max-w-lg
+
+max-h-[90vh]
+
+overflow-y-auto
+
+rounded-[32px]
+
 border
-border-white/10
+border-white/20
+
 bg-[#111]
-p-8
+
+p-6
+sm:p-8
+
 shadow-2xl
+
 "
 
 >
 
 
 
-{/* Close Button */}
+{/* Glow */}
+
+<div
+
+className="
+absolute
+
+top-0
+left-1/2
+
+h-60
+w-60
+
+-translate-x-1/2
+
+rounded-full
+
+bg-cyan-500/20
+
+blur-[100px]
+
+"
+
+/>
+
+
+
+
+
+{/* Close */}
+
 
 <button
 
@@ -73,16 +175,21 @@ onClick={close}
 
 className="
 absolute
+
 right-5
 top-5
+
 text-gray-400
+
 hover:text-white
+
 transition
+
 "
 
 >
 
-<X size={25}/>
+<X/>
 
 </button>
 
@@ -90,19 +197,23 @@ transition
 
 
 
-{/* Logo Header */}
+
+{/* Header */}
 
 
 <div
+
 className="
+relative
+
 flex
+
 items-center
-gap-3
-mb-6
-border-b
-border-white/10
-pb-5
+
+gap-4
+
 "
+
 >
 
 
@@ -110,11 +221,20 @@ pb-5
 
 src={logo}
 
-alt="Tcongs Infotech"
+alt="Tcongs"
 
 className="
-h-10
-w-auto
+h-14
+w-14
+
+rounded-2xl
+
+bg-white
+
+p-2
+
+object-contain
+
 "
 
 />
@@ -123,24 +243,35 @@ w-auto
 
 <div>
 
-<h3
+<h2
+
 className="
+text-2xl
+
+font-bold
+
 text-white
-font-semibold
-text-lg
+
 "
+
 >
 
 Tcongs Infotech
 
-</h3>
+</h2>
 
 
 <p
+
 className="
-text-xs
-text-gray-400
+text-sm
+
+text-cyan-400
+
+font-medium
+
 "
+
 >
 
 Digital Solutions Partner
@@ -157,31 +288,15 @@ Digital Solutions Partner
 
 
 
-
-{/* Title */}
-
-
-<h2
-
-className="
-text-3xl
-font-bold
-text-white
-"
-
->
-
-Let's Talk 🚀
-
-</h2>
-
-
-
 <p
 
 className="
-mt-2
+mt-5
+
 text-gray-400
+
+leading-7
+
 "
 
 >
@@ -195,36 +310,58 @@ Tell us a bit about your project and we’ll reach out shortly.
 
 
 
-{/* Form */}
-
-
 <form
 
+onSubmit={handleSubmit}
+
 className="
-mt-8
-space-y-5
+mt-6
+
+space-y-4
+
 "
 
 >
 
 
 
+
 <input
+
+required
+
+name="name"
+
+value={formData.name}
+
+onChange={handleChange}
 
 placeholder="Full Name*"
 
 className="
 w-full
-rounded-xl
+
+rounded-2xl
+
 border
-border-white/10
-bg-white/5
+border-white/20
+
+bg-white/10
+
 px-5
+
 py-4
+
 text-white
-placeholder:text-gray-500
+
 outline-none
-focus:border-cyan-500
+
+placeholder:text-gray-400
+
+focus:border-cyan-400
+
+transition
+
 "
 
 />
@@ -235,22 +372,42 @@ focus:border-cyan-500
 
 <input
 
-placeholder="Email Address*"
+required
 
 type="email"
 
+name="email"
+
+value={formData.email}
+
+onChange={handleChange}
+
+placeholder="Email Address*"
+
 className="
 w-full
-rounded-xl
+
+rounded-2xl
+
 border
-border-white/10
-bg-white/5
+border-white/20
+
+bg-white/10
+
 px-5
+
 py-4
+
 text-white
-placeholder:text-gray-500
+
 outline-none
-focus:border-cyan-500
+
+placeholder:text-gray-400
+
+focus:border-cyan-400
+
+transition
+
 "
 
 />
@@ -260,25 +417,44 @@ focus:border-cyan-500
 
 
 <input
+
+required
+
+name="phone"
+
+value={formData.phone}
+
+onChange={handleChange}
 
 placeholder="Phone Number*"
 
 className="
 w-full
-rounded-xl
+
+rounded-2xl
+
 border
-border-white/10
-bg-white/5
+border-white/20
+
+bg-white/10
+
 px-5
+
 py-4
+
 text-white
-placeholder:text-gray-500
+
 outline-none
-focus:border-cyan-500
+
+placeholder:text-gray-400
+
+focus:border-cyan-400
+
+transition
+
 "
 
 />
-
 
 
 
@@ -286,22 +462,44 @@ focus:border-cyan-500
 
 <textarea
 
-placeholder="Tell us about your project*"
+required
+
+name="project"
+
+value={formData.project}
+
+onChange={handleChange}
 
 rows="4"
 
+placeholder="Tell us about your project*"
+
 className="
 w-full
-rounded-xl
+
+rounded-2xl
+
 border
-border-white/10
-bg-white/5
+border-white/20
+
+bg-white/10
+
 px-5
+
 py-4
+
 text-white
-placeholder:text-gray-500
+
 outline-none
-focus:border-cyan-500
+
+placeholder:text-gray-400
+
+focus:border-cyan-400
+
+transition
+
+resize-none
+
 "
 
 />
@@ -311,27 +509,53 @@ focus:border-cyan-500
 
 
 
-
-{/* Verification */}
-
-
 <div
 
 className="
-rounded-xl
+rounded-2xl
+
 border
-border-white/10
+border-white/20
+
 bg-white/5
+
 p-4
-text-gray-300
+
 "
 
 >
 
 
-<p className="text-sm">
+<p
 
-Human Verification: 8 + 8 =
+className="
+text-sm
+
+text-gray-300
+
+"
+
+>
+
+Human Verification:
+
+<span
+
+className="
+ml-1
+
+font-bold
+
+text-cyan-400
+
+"
+
+>
+
+8 + 8 =
+
+</span>
+
 
 </p>
 
@@ -339,27 +563,46 @@ Human Verification: 8 + 8 =
 
 <input
 
+required
+
+value={captcha}
+
+onChange={(e)=>setCaptcha(e.target.value)}
+
 placeholder="Enter Sum*"
 
 className="
 mt-3
+
 w-full
-rounded-lg
-bg-black
+
+rounded-2xl
+
 border
-border-white/10
-px-4
-py-3
+border-white/20
+
+bg-white/10
+
+px-5
+
+py-4
+
 text-white
-placeholder:text-gray-500
+
 outline-none
+
+placeholder:text-gray-400
+
+focus:border-cyan-400
+
+transition
+
 "
 
 />
 
 
 </div>
-
 
 
 
@@ -372,25 +615,50 @@ outline-none
 type="submit"
 
 className="
+flex
+
 w-full
-rounded-full
+
+items-center
+
+justify-center
+
+gap-2
+
+rounded-2xl
+
 bg-gradient-to-r
+
 from-cyan-500
-to-blue-600
+
+via-blue-500
+
+to-purple-500
+
 py-4
+
 font-semibold
+
 text-white
+
 shadow-lg
-shadow-cyan-500/20
-hover:scale-105
+
+shadow-cyan-500/30
+
 transition
+
+hover:scale-[1.02]
+
 "
 
 >
 
+<Send size={18}/>
+
 Submit Inquiry
 
 </button>
+
 
 
 
@@ -400,15 +668,20 @@ Submit Inquiry
 
 
 
+
 </motion.div>
 
 
-</div>
+</motion.div>
+
+)}
+
+</AnimatePresence>
 
 
-)
+);
 
-}
+};
 
 
 export default ContactModal;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/Hero";
@@ -8,38 +8,64 @@ import GrowthSection from "./components/sections/GrowthSection";
 import FAQ from "./components/sections/FAQ";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/layout/Footer";
+
+import CursorGlow from "./components/common/CursorGlow";
+import AnimatedBackground from "./components/common/AnimatedBackground";
 import ChatWidget from "./components/common/ChatWidget";
 import ContactModal from "./components/common/ContactModal";
 
 function App() {
-
   const [contactOpen, setContactOpen] = useState(false);
+
+  useEffect(() => {
+    const alreadyShown = sessionStorage.getItem("contactPopupShown");
+
+    if (!alreadyShown) {
+      const timer = setTimeout(() => {
+        setContactOpen(true);
+        sessionStorage.setItem("contactPopupShown", "true");
+      }, 1500);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const closeContact = () => {
+    setContactOpen(false);
+  };
 
   return (
     <>
-      <Navbar
-        openContact={() => setContactOpen(true)}
-      />
+      <AnimatedBackground />
 
-      <Hero
-        openContact={() => setContactOpen(true)}
-      />
+      <CursorGlow />
 
-      <Services />
-      <Process />
-      <GrowthSection />
-      <FAQ />
-      <Contact />
-      <Footer />
-      <ChatWidget />
+      <main className="relative z-10 min-h-screen">
+        <Navbar openContact={() => setContactOpen(true)} />
+
+        <Hero openContact={() => setContactOpen(true)} />
+
+        <Services />
+
+        <Process />
+
+        <GrowthSection />
+
+        <FAQ />
+
+        <Contact />
+
+        <Footer />
+
+        <ChatWidget />
+      </main>
 
       <ContactModal
         open={contactOpen}
-        close={() => setContactOpen(false)}
+        close={closeContact}
       />
     </>
   );
-
 }
 
 export default App;

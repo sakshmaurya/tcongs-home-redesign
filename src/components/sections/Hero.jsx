@@ -4,9 +4,9 @@ import { Shield } from "lucide-react";
 import figma from "../../assets/logos/figma.svg";
 import react from "../../assets/logos/react.svg";
 import branding from "../../assets/logos/branding.svg";
+import MagneticButton from "../common/MagneticButton";
 
 const Hero = ({ openContact }) => {
-
   
 
   const tools = [
@@ -30,6 +30,7 @@ return (
 <section
 className="
 relative
+z-10
 overflow-hidden
 bg-black
 pt-28
@@ -562,22 +563,26 @@ and scale globally.
 </div>
 
 
-<button
-  onClick={openContact}
-  className="
-  mt-6
-  rounded-full
-  bg-white
-  px-6
-  py-3
-  font-semibold
-  text-black
-  transition
-  hover:scale-105
+<MagneticButton
+
+onClick={openContact}
+
+className="
+mt-6
+rounded-full
+bg-white
+px-6
+py-3
+font-semibold
+text-black
+shadow-lg
 "
+
 >
-  Get Started →
-</button>
+
+Get Started →
+
+</MagneticButton>
 
 
 </div>
@@ -697,7 +702,7 @@ className="
 hidden
 lg:block
 absolute
--left-8
+left-[-32px]
 top-16
 rounded-2xl
 border
@@ -747,7 +752,7 @@ className="
 hidden
 lg:block
 absolute
--right-6
+right-[-24px]
 bottom-4
 rounded-2xl
 border
