@@ -17,8 +17,12 @@ const ContactModal = ({ open, close }) => {
 });
 
 
-  const [captcha, setCaptcha] = useState("");
+const [captcha, setCaptcha] = useState("");
 
+const [captchaData, setCaptchaData] = useState({
+  num1: Math.floor(Math.random() * 10) + 1,
+  num2: Math.floor(Math.random() * 10) + 1,
+});
 
 
   const handleChange = (e) => {
@@ -29,38 +33,59 @@ const ContactModal = ({ open, close }) => {
     });
 
   };
+  const generateCaptcha = () => {
+
+  setCaptchaData({
+    num1: Math.floor(Math.random() * 10) + 1,
+    num2: Math.floor(Math.random() * 10) + 1,
+  });
+
+  setCaptcha("");
+
+};
 
 
 
   const handleSubmit = (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
 
-    if(captcha !== "16"){
-
-      alert("Please enter correct verification");
-
-      return;
-
-    }
+  const correctAnswer = captchaData.num1 + captchaData.num2;
 
 
-   alert("Thanks! We will contact you soon 🚀");
+  if(Number(captcha) !== correctAnswer){
 
-setFormData({
-  name:"",
-  email:"",
-  phone:"",
-  project:""
-});
+    alert("Please enter correct verification");
 
-setCaptcha("");
+    generateCaptcha();
 
-close();
+    return;
 
-  };
+  }
 
+
+  alert("Thanks! We will contact you soon 🚀");
+
+
+  setFormData({
+
+    name:"",
+    email:"",
+    countryCode:"+91",
+    phone:"",
+    project:""
+
+  });
+
+
+  setCaptcha("");
+
+  generateCaptcha();
+
+  close();
+
+};
 
 
 return (
@@ -425,20 +450,27 @@ transition
 
 
 
-<div className="flex gap-3">
+<div className="
+flex
+flex-col
+sm:flex-row
+gap-3
+">
 
 <select
 name="countryCode"
 value={formData.countryCode}
 onChange={handleChange}
 className="
-w-28
+w-full
+sm:w-28
 rounded-2xl
 border
 border-white/20
 bg-white/10
-px-3
-py-4
+px-4
+py-3
+sm:py-4
 text-white
 outline-none
 focus:border-cyan-400
@@ -484,13 +516,15 @@ onChange={handleChange}
 placeholder="Phone Number*"
 
 className="
+w-full
 flex-1
 rounded-2xl
 border
 border-white/20
 bg-white/10
 px-5
-py-4
+py-3
+sm:py-4
 text-white
 outline-none
 placeholder:text-gray-400
@@ -598,7 +632,7 @@ text-cyan-400
 
 >
 
-8 + 8 =
+{captchaData.num1} + {captchaData.num2} =
 
 </span>
 
@@ -607,15 +641,19 @@ text-cyan-400
 
 
 
+
+
 <input
 
 required
+
+type="number"
 
 value={captcha}
 
 onChange={(e)=>setCaptcha(e.target.value)}
 
-placeholder="Enter Sum*"
+placeholder="Enter Answer*"
 
 className="
 mt-3
@@ -629,11 +667,16 @@ border-white/20
 
 bg-white/10
 
-px-5
+px-4
+sm:px-5
 
-py-4
+py-3
+sm:py-4
 
 text-white
+
+text-sm
+sm:text-base
 
 outline-none
 

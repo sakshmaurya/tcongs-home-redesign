@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   CheckCircle2,
@@ -10,6 +11,24 @@ import {
 
 
 const Contact = ({ openContact }) => {
+  const [captcha, setCaptcha] = useState("");
+
+const [captchaData, setCaptchaData] = useState({
+  num1: Math.floor(Math.random() * 10) + 1,
+  num2: Math.floor(Math.random() * 10) + 1,
+});
+
+
+const generateCaptcha = () => {
+
+  setCaptchaData({
+    num1: Math.floor(Math.random() * 10) + 1,
+    num2: Math.floor(Math.random() * 10) + 1,
+  });
+
+  setCaptcha("");
+
+};
 
 const points = [
   "Share your project requirements with our team.",
@@ -273,7 +292,34 @@ shadow-2xl
 
 
 <form
-onSubmit={(e)=>e.preventDefault()}
+onSubmit={(e)=>{
+
+e.preventDefault();
+
+
+const answer = captchaData.num1 + captchaData.num2;
+
+
+if(Number(captcha) !== answer){
+
+alert("Please enter correct verification");
+
+generateCaptcha();
+
+return;
+
+}
+
+
+alert("Project request sent successfully 🚀");
+
+
+setCaptcha("");
+
+generateCaptcha();
+
+
+}}
 className="
 space-y-5
 "
@@ -511,13 +557,24 @@ text-gray-400
 mb-3
 "
 >
-Human Verification: 5 + 3 = ?
+Human Verification: 
+
+<span className="text-cyan-400 font-bold">
+{captchaData.num1} + {captchaData.num2} = ?
+</span>
+
 </p>
 
 
 <input
 
+required
+
 type="number"
+
+value={captcha}
+
+onChange={(e)=>setCaptcha(e.target.value)}
 
 placeholder="Enter Answer"
 
