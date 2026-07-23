@@ -168,7 +168,7 @@ text-gray-300
 "
 >
 
-Trusted by businesses worldwide to build scalable digital solutions
+Building digital solutions for modern businesses .
 
 </p>
 
