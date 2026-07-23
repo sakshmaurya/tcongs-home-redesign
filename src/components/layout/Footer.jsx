@@ -396,7 +396,7 @@ text-gray-400
 >
 
 <strong className="text-white">
-Mumbai Office:
+Mumbai Office : 
 </strong>
 
 Based in Mumbai, India. Serving clients worldwide.

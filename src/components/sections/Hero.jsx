@@ -31,7 +31,7 @@ return (
 className="
 relative
 z-10
-overflow-hidden
+overflow-x-hidden
 bg-black
 pt-28
 md:pt-36
@@ -73,7 +73,8 @@ className="
 grid
 grid-cols-1
 lg:grid-cols-2
-gap-16
+gap-10
+lg:gap-16
 items-center
 "
 >
@@ -391,8 +392,10 @@ className="
 relative
 flex
 justify-center
-mt-14
+w-full
+mt-10
 lg:mt-0
+px-0
 "
 
 >
@@ -425,13 +428,11 @@ opacity-30
 
 
 <div
-
 className="
 relative
 z-10
-w-[300px]
-sm:w-[380px]
-lg:w-[500px]
+w-full
+max-w-[500px]
 overflow-hidden
 rounded-[30px]
 border
@@ -440,9 +441,7 @@ bg-white/5
 backdrop-blur-xl
 shadow-2xl
 "
-
 >
-
 
 {/* Browser Header */}
 
@@ -504,7 +503,8 @@ bg-gradient-to-r
 from-cyan-500
 via-blue-600
 to-purple-600
-p-8
+p-5
+sm:p-8
 text-white
 "
 >
@@ -518,13 +518,13 @@ Digital Agency
 <h2
 className="
 mt-3
-text-3xl
+text-2xl
+sm:text-3xl
 font-bold
+leading-tight
 "
 >
-
 Build Your Digital Future
-
 </h2>
 
 
@@ -547,7 +547,8 @@ border
 border-white/20
 bg-white/10
 backdrop-blur-xl
-p-4
+p-3
+sm:p-4
 "
 >
 <p className="text-sm font-semibold">
@@ -598,8 +599,10 @@ Get Started →
 className="
 grid
 grid-cols-2
-gap-3
-p-5
+gap-2
+sm:gap-3
+p-3
+sm:p-5
 bg-black/20
 "
 >
@@ -655,7 +658,8 @@ text-lg
 <p
 className="
 mt-2
-text-sm
+text-xs
+sm:text-sm
 font-semibold
 text-white
 "
