@@ -1,31 +1,28 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
-
 import figma from "../../assets/logos/figma.svg";
 import react from "../../assets/logos/react.svg";
 import branding from "../../assets/logos/branding.svg";
 
+const Hero = ({ openContact }) => {
 
-
-const Hero = () => {
-
-
-const tools = [
-  {
-    name:"Figma",
-    image:figma
-  },
-  {
-    name:"React",
-    image:react
-  },
-  {
-    name:"Branding",
-    image:branding
-  },
   
-];
 
+  const tools = [
+    {
+      name: "Figma",
+      image: figma,
+    },
+    {
+      name: "React",
+      image: react,
+    },
+    {
+      name: "Branding",
+      image: branding,
+    },
+  ];
 
 
 return (
@@ -541,23 +538,45 @@ text-blue-100
 Web • Apps • AI • Marketing
 
 </p>
+<div
+className="
+mt-6
+rounded-2xl
+border
+border-white/20
+bg-white/10
+backdrop-blur-xl
+p-4
+"
+>
+<p className="text-sm font-semibold">
+👋 Welcome to Tcongs Infotech
+</p>
 
+<p className="mt-2 text-sm text-blue-100 leading-6">
+We create modern websites, mobile applications,
+AI-powered software and digital marketing strategies
+that help businesses launch faster, grow smarter
+and scale globally.
+</p>
+</div>
 
 
 <button
-className="
-mt-6
-rounded-full
-bg-white
-px-6
-py-3
-font-semibold
-text-black
+  onClick={openContact}
+  className="
+  mt-6
+  rounded-full
+  bg-white
+  px-6
+  py-3
+  font-semibold
+  text-black
+  transition
+  hover:scale-105
 "
 >
-
-Get Started
-
+  Get Started →
 </button>
 
 

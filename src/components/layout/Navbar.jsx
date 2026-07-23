@@ -6,13 +6,13 @@ import logo from "../../assets/logos/logo.svg";
 import ContactModal from "../common/ContactModal";
 
 
-const Navbar = () => {
+const Navbar = ({ openContact }) => {
 
 
 const [activeSolution,setActiveSolution] = useState(solutions[0]);
 const [mobileMenu,setMobileMenu] = useState(false);
 const [mobileSolution,setMobileSolution] = useState(false);
-const [contactOpen,setContactOpen] = useState(false);
+
 
 
 
@@ -403,30 +403,25 @@ Contact
 {/* BUTTON */}
 
 <button
-
-onClick={()=>setContactOpen(true)}
-
-className="
-hidden
-md:block
-rounded-full
-bg-gradient-to-r
-from-cyan-500
-to-blue-600
-px-6
-py-3
-text-white
-font-semibold
-shadow-lg
-shadow-cyan-500/20
-hover:scale-105
-transition
+  onClick={openContact}
+  className="
+  hidden
+  md:block
+  rounded-full
+  bg-gradient-to-r
+  from-cyan-500
+  to-blue-600
+  px-6
+  py-3
+  text-white
+  font-semibold
+  shadow-lg
+  shadow-cyan-500/20
+  hover:scale-105
+  transition
 "
-
 >
-
-Launch Your Idea 🚀
-
+  Launch Your Idea 🚀
 </button>
 
 
@@ -467,25 +462,13 @@ mobileMenu
 mobileMenu &&
 
 <motion.div
-
-initial={{
-opacity:0,
-y:-20
-}}
-
-animate={{
-opacity:1,
-y:0
-}}
-
-exit={{
-opacity:0,
-y:-20
-}}
+initial={{ opacity: 0, y: -20 }}
+animate={{ opacity: 1, y: 0 }}
+exit={{ opacity: 0, y: -20 }}
 
 className="
 mt-3
-mx-5
+mx-4
 rounded-3xl
 bg-black/95
 border
@@ -493,8 +476,10 @@ border-white/10
 p-6
 text-white
 md:hidden
-"
 
+max-h-[80vh]
+overflow-y-auto
+"
 >
 
 
@@ -529,20 +514,27 @@ Company
 
 
 <button
-onClick={()=>
-setMobileSolution(!mobileSolution)
-}
-className="
-flex
-justify-between
-items-center
-w-full
-py-3
-text-gray-300
-hover:text-cyan-400
-transition
-"
-></button>
+  onClick={() => setMobileSolution(!mobileSolution)}
+  className="
+  flex
+  items-center
+  justify-between
+  w-full
+  py-3
+  text-gray-300
+  hover:text-cyan-400
+  transition
+  "
+>
+  <span>Solution</span>
+
+  <ChevronDown
+    size={18}
+    className={`transition ${
+      mobileSolution ? "rotate-180" : ""
+    }`}
+  />
+</button>
 
 
 
@@ -552,24 +544,16 @@ transition
 mobileSolution &&
 
 <motion.div
+initial={{ height: 0, opacity: 0 }}
+animate={{ height: "auto", opacity: 1 }}
+exit={{ height: 0, opacity: 0 }}
+transition={{ duration: 0.3 }}
 
-initial={{
-height:0,
-opacity:0
-}}
-
-animate={{
-height:"auto",
-opacity:1
-}}
-
-exit={{
-height:0,
-opacity:0
-}}
-
-className="overflow-hidden"
-
+className="
+overflow-hidden
+pl-4
+pb-3
+"
 >
 
 
@@ -592,17 +576,19 @@ py-3
 
 
 {
-item.services?.map((service,i)=>(
+item.services?.map((service, i) => (
+
 <p
+key={i}
 className="
+block
+py-2
 text-sm
 text-gray-400
-mt-2
 hover:text-cyan-400
 transition
 "
 >
-
 {service.title}
 
 </p>
@@ -644,30 +630,20 @@ Contact
 
 
 <button
-
-onClick={()=>setContactOpen(true)}
-
-className="
-hidden
-md:block
-rounded-full
-bg-gradient-to-r
-from-cyan-500
-to-blue-600
-px-6
-py-3
-text-white
-font-semibold
-shadow-lg
-shadow-cyan-500/20
-hover:scale-105
-transition
+  onClick={openContact}
+  className="
+  mt-6
+  w-full
+  rounded-full
+  bg-gradient-to-r
+  from-cyan-500
+  to-blue-600
+  py-3
+  text-white
+  font-semibold
 "
-
 >
-
-Launch Your Idea 🚀
-
+  Launch Your Idea 🚀
 </button>
 
 
@@ -678,215 +654,7 @@ Launch Your Idea 🚀
 
 
 </AnimatePresence>
-{
-contactOpen && (
 
-<div
-className="
-fixed
-inset-0
-z-[100]
-flex
-items-center
-justify-center
-bg-black/70
-backdrop-blur-sm
-px-4
-"
->
-
-
-<div
-className="
-relative
-w-full
-max-w-lg
-rounded-3xl
-bg-black
-border
-border-white/10
-p-8
-shadow-2xl
-"
->
-
-
-<button
-onClick={()=>setContactOpen(false)}
-className="
-absolute
-right-5
-top-5
-text-gray-400
-hover:text-white
-"
->
-<X size={24}/>
-</button>
-
-
-
-<h2
-className="
-text-3xl
-font-bold
-text-white
-"
->
-Let's Talk 🚀
-</h2>
-
-
-<p
-className="
-mt-2
-text-gray-400
-"
->
-Tell us a bit about your project and we'll reach out shortly.
-</p>
-
-
-
-<form
-className="
-mt-6
-space-y-4
-"
->
-
-
-<input
-placeholder="Full Name*"
-className="
-w-full
-rounded-xl
-bg-white/5
-border
-border-white/10
-px-4
-py-3
-text-white
-outline-none
-"
-/>
-
-
-
-<input
-placeholder="Email Address*"
-className="
-w-full
-rounded-xl
-bg-white/5
-border
-border-white/10
-px-4
-py-3
-text-white
-outline-none
-"
-/>
-
-
-
-<input
-placeholder="Phone Number*"
-className="
-w-full
-rounded-xl
-bg-white/5
-border
-border-white/10
-px-4
-py-3
-text-white
-outline-none
-"
-/>
-
-
-
-<textarea
-placeholder="Tell us about your project*"
-rows="4"
-className="
-w-full
-rounded-xl
-bg-white/5
-border
-border-white/10
-px-4
-py-3
-text-white
-outline-none
-"
-/>
-
-
-
-<div
-className="
-rounded-xl
-bg-white/5
-border
-border-white/10
-p-4
-text-gray-300
-"
->
-
-Human Verification: 5 + 7 =
-
-
-<input
-placeholder="Enter Sum*"
-className="
-mt-3
-w-full
-rounded-xl
-bg-black
-border
-border-white/10
-px-4
-py-3
-text-white
-"
-/>
-
-</div>
-
-
-
-<button
-className="
-w-full
-rounded-full
-bg-gradient-to-r
-from-cyan-500
-to-blue-600
-py-3
-font-semibold
-text-white
-hover:scale-105
-transition
-"
->
-Submit Inquiry
-</button>
-
-
-
-</form>
-
-
-</div>
-
-
-</div>
-
-)
-}
 
 
 </header>
