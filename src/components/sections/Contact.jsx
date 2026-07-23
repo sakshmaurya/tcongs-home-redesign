@@ -9,13 +9,12 @@ import {
 } from "lucide-react";
 
 
-const Contact = () => {
-
+const Contact = ({ openContact }) => {
 
 const points = [
-  "You'll hear from us within one business day.",
-  "We'll understand your goals and requirements.",
-  "You'll receive clear pricing & timeline."
+  "Share your project requirements with our team.",
+  "Discuss your goals and technical needs.",
+  "Get a suitable solution approach for your project."
 ];
 
 
@@ -123,7 +122,7 @@ leading-tight
 "
 >
 
-Let's Build Something
+Let's Discuss Your
 <br/>
 
 <span
@@ -135,7 +134,7 @@ bg-clip-text
 text-transparent
 "
 >
-You'll Be Proud Of
+Next Digital Project
 </span>
 
 </h2>
@@ -274,6 +273,7 @@ shadow-2xl
 
 
 <form
+onSubmit={(e)=>e.preventDefault()}
 className="
 space-y-5
 "
@@ -570,7 +570,7 @@ hover:scale-105
 
 >
 
-Submit Inquiry
+Send Project Request
 
 <Send size={18}/>
 

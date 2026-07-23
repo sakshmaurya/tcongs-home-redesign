@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -230,6 +230,7 @@ const processData = [
 
 export default function Process() {
   const [active, setActive] = useState(1);
+  const contentRef = useRef(null);
 
   const current = processData.find(
     (item) => item.id === active
@@ -463,6 +464,7 @@ export default function Process() {
         <AnimatePresence mode="wait">
 
           <motion.div
+          ref={contentRef}
             key={current.id}
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}

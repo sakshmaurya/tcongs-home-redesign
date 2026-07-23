@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 
-const GrowthSection = () => {
+const GrowthSection = ({openContact}) => {
 
 
 const growthSteps = [
@@ -200,25 +200,24 @@ and achieve sustainable growth globally.
 
 
 <button
-className="
-mt-8
-rounded-full
-bg-gradient-to-r
-from-cyan-500
-to-blue-600
-px-8
-py-4
-text-white
-font-semibold
-shadow-lg
-shadow-cyan-500/20
-hover:scale-105
-transition
-"
+  onClick={openContact}
+  className="
+    mt-8
+    rounded-full
+    bg-gradient-to-r
+    from-cyan-500
+    to-blue-600
+    px-8
+    py-4
+    text-white
+    font-semibold
+    shadow-lg
+    shadow-cyan-500/20
+    hover:scale-105
+    transition
+  "
 >
-
-Start Your Project 🚀
-
+  Start Your Project 🚀
 </button>
 
 
@@ -302,12 +301,12 @@ Business Growth
 <h3
 className="
 mt-2
-text-4xl
+text-3xl
 font-bold
 text-white
 "
 >
-+120%
+Digital Solutions
 </h3>
 
 

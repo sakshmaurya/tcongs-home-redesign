@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 
 
-const FAQ = () => {
+const FAQ = ({ openContact }) => {
 
 
 const [active,setActive] = useState(0);
@@ -22,22 +22,21 @@ answer:
 {
 question:"How long does it take to build a website or app?",
 answer:
-"The timeline depends on project complexity. Basic websites usually take 7–15 days, while advanced platforms and mobile applications may take several weeks."
+"The timeline depends on project requirements, features, design complexity, and development scope."
 },
 
 
 {
 question:"Do you work with international clients?",
 answer:
-"Yes, we work with clients globally and provide remote communication, support, and complete digital solutions."
+"We collaborate with businesses remotely and provide communication support throughout the project lifecycle."
 },
 
 
 {
 question:"Can you help grow my business after development?",
 answer:
-"Yes, we provide SEO, marketing, analytics, and growth strategies to increase traffic, leads, and business performance."
-},
+"support businesses with optimization, analytics, and digital improvement strategies."},
 
 
 {
@@ -189,23 +188,22 @@ Tcongs Infotech helps businesses grow with web development, mobile apps, eCommer
 
 
 <button
-className="
-mt-8
-rounded-full
-bg-gradient-to-r
-from-cyan-500
-to-blue-600
-px-8
-py-4
-text-white
-font-semibold
-hover:scale-105
-transition
-"
+  onClick={openContact}
+  className="
+    mt-8
+    rounded-full
+    bg-gradient-to-r
+    from-cyan-500
+    to-blue-600
+    px-8
+    py-4
+    text-white
+    font-semibold
+    hover:scale-105
+    transition
+  "
 >
-
-Book a Free Call 🚀
-
+  Book a Free Call 🚀
 </button>
 
 

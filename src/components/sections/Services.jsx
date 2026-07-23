@@ -110,7 +110,15 @@ const services = [
 
 return (
 
-<section className="relative overflow-hidden bg-black py-24">
+<section
+id="services"
+className="
+relative
+overflow-hidden
+bg-black
+py-24
+"
+>
 
   {/* Background Glow */}
   <div
@@ -255,26 +263,33 @@ return (
 
 
             whileHover={{
-              y:-10,
-              scale:1.02
-            }}
+  y: -12,
+  scale: 1.03,
+}}
 
 
-            className="
-              group
-              relative
-              overflow-hidden
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              backdrop-blur-xl
-              p-7
-              cursor-pointer
-              transition-all
-              duration-300
-              hover:border-cyan-400/40
-            "
+          className="
+group
+relative
+flex
+flex-col
+overflow-hidden
+rounded-3xl
+border
+border-white/10
+bg-white/5
+backdrop-blur-xl
+p-7
+cursor-pointer
+transition-all
+duration-300
+min-h-[560px]
+
+hover:-translate-y-3
+hover:scale-[1.03]
+hover:border-cyan-400/60
+hover:shadow-[0_0_45px_rgba(34,211,238,.25)]
+"
           >
 
 
@@ -294,6 +309,25 @@ return (
                 blur-3xl
               `}
             />
+            {/* Shine Effect */}
+
+<div
+  className="
+    absolute
+    -left-40
+    top-0
+    h-full
+    w-24
+    rotate-12
+    bg-white/10
+    blur-xl
+    opacity-0
+    transition-all
+    duration-700
+    group-hover:left-[120%]
+    group-hover:opacity-100
+  "
+/>
 
 
 
@@ -315,7 +349,9 @@ return (
                   text-white
                   shadow-lg
                   group-hover:scale-110
-                  transition
+group-hover:rotate-6
+transition-all
+duration-300
                 `}
               >
 
@@ -336,6 +372,24 @@ return (
               >
                 {service.tag}
               </p>
+              <div
+className="
+mt-3
+inline-flex
+items-center
+rounded-full
+border
+border-cyan-500/20
+bg-cyan-500/10
+px-3
+py-1
+text-xs
+font-medium
+text-cyan-300
+"
+>
+Premium Solution
+</div>
 
 
 
@@ -355,13 +409,15 @@ return (
              <p
 className="
 mt-4
+min-h-[90px]
 text-gray-400
 leading-7
 "
+
 >
 {service.description}
 </p>
-<div className="mt-6 space-y-3">
+<div className="mt-6 space-y-3 flex-1">
 
 {
 service.features.map((feature)=>(
@@ -379,7 +435,13 @@ text-gray-300
 
 <CheckCircle2
 size={18}
-className="text-cyan-400"
+className="
+text-cyan-400
+shrink-0
+group-hover:text-white
+transition-colors
+duration-300
+"
 />
 
 <span>
@@ -395,7 +457,8 @@ className="text-cyan-400"
 </div>
 <button
 className="
-mt-8
+mt-auto
+pt-8
 flex
 items-center
 gap-2
@@ -408,11 +471,13 @@ group/btn
 Learn More
 
 <ArrowRight
-size={18}
-className="
-transition
-group-hover/btn:translate-x-2
-"
+  size={18}
+  className="
+    transition-all
+    duration-300
+    group-hover/btn:translate-x-2
+    group-hover/btn:scale-110
+  "
 />
 
 </button>

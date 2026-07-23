@@ -339,6 +339,14 @@ Schedule Meeting
 
 <button
 
+onClick={()=>{
+document
+.getElementById("services")
+?.scrollIntoView({
+behavior:"smooth"
+})
+}}
+
 className="
 rounded-full
 border
@@ -354,9 +362,7 @@ hover:bg-white/10
 "
 
 >
-
 Services
-
 </button>
 
 
@@ -483,7 +489,7 @@ text-gray-300
 "
 >
 
-tcongsinfotech.com
+digital-product-preview
 
 </div>
 

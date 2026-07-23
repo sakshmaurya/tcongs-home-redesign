@@ -22,13 +22,17 @@ function App() {
 
     if (!alreadyShown) {
       const timer = setTimeout(() => {
-        setContactOpen(true);
-        sessionStorage.setItem("contactPopupShown", "true");
-      }, 1500);
+  setContactOpen(true);
+  sessionStorage.setItem("contactPopupShown", "true");
+}, 3000);
 
       return () => clearTimeout(timer);
     }
   }, []);
+
+  const openContact = () => {
+    setContactOpen(true);
+  };
 
   const closeContact = () => {
     setContactOpen(false);
@@ -41,19 +45,21 @@ function App() {
       <CursorGlow />
 
       <main className="relative z-10 min-h-screen">
-        <Navbar openContact={() => setContactOpen(true)} />
+        <Navbar openContact={openContact} />
 
-        <Hero openContact={() => setContactOpen(true)} />
+        <Hero openContact={openContact} />
 
         <Services />
 
         <Process />
 
-        <GrowthSection />
+     <GrowthSection openContact={openContact} />
 
-        <FAQ />
+        <FAQ 
+  openContact={() => setContactOpen(true)}
+/>
 
-        <Contact />
+        <Contact openContact={openContact} />
 
         <Footer />
 

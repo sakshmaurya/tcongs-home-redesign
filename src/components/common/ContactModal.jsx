@@ -9,11 +9,12 @@ const ContactModal = ({ open, close }) => {
 
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    project: ""
-  });
+  name: "",
+  email: "",
+  countryCode: "+91",
+  phone: "",
+  project: ""
+});
 
 
   const [captcha, setCaptcha] = useState("");
@@ -45,9 +46,18 @@ const ContactModal = ({ open, close }) => {
     }
 
 
-    alert("Thanks! We will contact you soon 🚀");
+   alert("Thanks! We will contact you soon 🚀");
 
-    close();
+setFormData({
+  name:"",
+  email:"",
+  phone:"",
+  project:""
+});
+
+setCaptcha("");
+
+close();
 
   };
 
@@ -415,10 +425,55 @@ transition
 
 
 
+<div className="flex gap-3">
+
+<select
+name="countryCode"
+value={formData.countryCode}
+onChange={handleChange}
+className="
+w-28
+rounded-2xl
+border
+border-white/20
+bg-white/10
+px-3
+py-4
+text-white
+outline-none
+focus:border-cyan-400
+transition
+"
+>
+
+<option value="+91" className="text-black">
+🇮🇳 +91
+</option>
+
+<option value="+1" className="text-black">
+🇺🇸 +1
+</option>
+
+<option value="+44" className="text-black">
+🇬🇧 +44
+</option>
+
+<option value="+61" className="text-black">
+🇦🇺 +61
+</option>
+
+<option value="+971" className="text-black">
+🇦🇪 +971
+</option>
+
+</select>
+
 
 <input
 
 required
+
+type="tel"
 
 name="phone"
 
@@ -429,32 +484,23 @@ onChange={handleChange}
 placeholder="Phone Number*"
 
 className="
-w-full
-
+flex-1
 rounded-2xl
-
 border
 border-white/20
-
 bg-white/10
-
 px-5
-
 py-4
-
 text-white
-
 outline-none
-
 placeholder:text-gray-400
-
 focus:border-cyan-400
-
 transition
-
 "
 
 />
+
+</div>
 
 
 
